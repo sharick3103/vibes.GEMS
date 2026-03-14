@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>vibes.GEMS ✿</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --g:#a8d5a2; --gl:#c9e8c5; --gp:#e9f6e7; --gd:#5f9e59;
+  --p:#7b5ea7; --pl:#b49ddb; --pp:#ede7f6; --pd:#3e1f6b;
+  --cream:#f8f5f0; --ink:#150826; --white:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Mono',monospace;background:var(--cream);color:var(--ink);overflow-x:hidden;cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Ccircle cx='9' cy='9' r='4' fill='%237b5ea7'/%3E%3C/svg%3E") 9 9,auto;}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");opacity:.5;}
+.page{display:none;} .page.active{display:block;}
+/* NAV */
+nav{position:sticky;top:0;z-index:900;background:rgba(248,245,240,.93);backdrop-filter:blur(18px);border-bottom:1.5px solid var(--pl);padding:.9rem 2.5rem;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900;color:var(--pd);cursor:pointer;letter-spacing:-.02em;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--p);text-decoration:none;cursor:pointer;position:relative;transition:color .2s;}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1.5px;background:var(--gd);transform:scaleX(0);transition:transform .25s;}
+.nav-links a:hover{color:var(--pd);} .nav-links a:hover::after{transform:scaleX(1);}
+.nav-btn{padding:.55rem 1.6rem;background:var(--p);color:var(--cream);border:2px solid var(--p);font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .25s;}
+.nav-btn:hover{background:var(--pd);border-color:var(--pd);transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--gd);}
+/* HERO */
+.hero{min-height:100vh;background:linear-gradient(135deg,var(--gp) 0%,var(--pp) 55%,var(--gl) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:2rem;}
+.hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(-42deg,transparent,transparent 4px,rgba(123,94,167,.025) 4px,rgba(123,94,167,.025) 5px);}
+.blob{position:absolute;border-radius:50%;opacity:.16;animation:blob 9s ease-in-out infinite;}
+.blob-1{width:380px;height:380px;background:var(--p);top:-120px;left:-120px;}
+.blob-2{width:220px;height:220px;background:var(--gd);bottom:20px;right:-60px;animation-delay:-3s;}
+.blob-3{width:150px;height:150px;background:var(--pl);top:58%;left:8%;animation-delay:-5.5s;}
+.blob-4{width:90px;height:90px;background:var(--g);top:18%;right:12%;animation-delay:-2s;}
+@keyframes blob{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-26px) scale(1.04);}}
+.sf{position:absolute;font-size:2.4rem;pointer-events:none;user-select:none;filter:drop-shadow(0 4px 10px rgba(123,94,167,.35));animation:sfw 3.5s ease-in-out infinite;}
+.sf-a{top:11%;left:7%;animation-delay:0s;font-size:2rem;}
+.sf-b{top:18%;right:5%;animation-delay:-1.2s;font-size:3rem;}
+.sf-c{bottom:22%;right:7%;animation-delay:-2.1s;font-size:2.2rem;}
+.sf-d{bottom:30%;left:4%;animation-delay:-.7s;font-size:2.6rem;}
+@keyframes sfw{0%,100%{transform:rotate(-8deg) scale(1);}50%{transform:rotate(6deg) scale(1.1);}}
+.hero-content{position:relative;z-index:2;text-align:center;}
+.hero-eyebrow{font-size:.62rem;letter-spacing:.45em;text-transform:uppercase;color:var(--p);opacity:.75;margin-bottom:1.4rem;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(4.5rem,13vw,10rem);font-weight:900;line-height:.88;background:linear-gradient(140deg,var(--pd) 0%,var(--p) 45%,var(--gd) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.03em;}
+.hero-script{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.1rem,3vw,1.7rem);color:var(--p);opacity:.82;margin-top:.9rem;letter-spacing:.06em;}
+.hero-tag{font-size:.63rem;letter-spacing:.28em;text-transform:uppercase;color:var(--pd);opacity:.5;margin-top:2.8rem;font-style:italic;}
+.hero-cta{margin-top:2.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-hp,.btn-ho{padding:.75rem 2.4rem;font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;transition:all .3s;}
+.btn-hp{background:var(--p);color:var(--cream);border:2px solid var(--p);}
+.btn-hp:hover{background:var(--pd);border-color:var(--pd);transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--gd);}
+.btn-ho{background:transparent;color:var(--p);border:2px solid var(--p);}
+.btn-ho:hover{background:var(--gp);transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--pl);}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.3rem;opacity:.35;font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--pd);animation:sbounce 2s ease-in-out infinite;}
+@keyframes sbounce{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(7px);}}
+/* MARQUEE */
+.mq-wrap{background:var(--g);border-top:2px solid var(--gd);border-bottom:2px solid var(--gd);overflow:hidden;padding:.85rem 0;}
+.mq{display:flex;gap:2.5rem;white-space:nowrap;animation:mq 20s linear infinite;}
+.mq-item{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--pd);font-weight:500;display:inline-flex;align-items:center;gap:.8rem;}
+.mq-item::after{content:'✿';color:var(--p);}
+@keyframes mq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+/* SHARED */
+.wrap{max-width:1180px;margin:0 auto;padding:5.5rem 2rem;}
+.sec-label{font-size:.58rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gd);display:block;margin-bottom:.8rem;}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.8rem);font-weight:900;color:var(--pd);line-height:1.05;}
+.sec-title em{position:relative;font-style:normal;}
+.sec-title em::after{content:'';position:absolute;bottom:3px;left:0;right:0;height:7px;background:linear-gradient(90deg,var(--g) 50%,transparent);opacity:.45;z-index:-1;}
+.sec-sub{font-size:.68rem;color:var(--p);opacity:.7;margin-top:.9rem;font-style:italic;letter-spacing:.07em;}
+.sec-head{text-align:center;margin-bottom:3.8rem;}
+/* TABS */
+.cat-tabs{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem;}
+.ctab{padding:.5rem 1.4rem;border:1.5px solid var(--pl);font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;background:transparent;color:var(--p);transition:all .22s;}
+.ctab::before{content:attr(data-icon);margin-right:5px;}
+.ctab:hover,.ctab.on{background:var(--p);color:var(--cream);border-color:var(--p);}
+/* GRID */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:1.8rem;}
+.pcard{background:var(--white);border:1.5px solid var(--gl);position:relative;overflow:hidden;cursor:pointer;transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s,border-color .35s;display:none;}
+.pcard.show{display:block;}
+.pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gd),var(--p),var(--gl));}
+.pcard:hover{transform:translate(-5px,-5px) rotate(-.4deg);box-shadow:8px 8px 0 var(--pl),13px 13px 0 var(--gl);border-color:var(--pl);}
+.pcard-img{width:100%;height:235px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.pcard[data-c="flores"]      .pcard-img{background:linear-gradient(135deg,#eaf6e7,#f3e5f5);}
+.pcard[data-c="llaveros"]    .pcard-img{background:linear-gradient(135deg,#f3e5f5,#eaf6e7);}
+.pcard[data-c="porcelana"]   .pcard-img{background:linear-gradient(135deg,#ede7f6,#eaf6e7);}
+.pcard[data-c="limpiapipas"] .pcard-img{background:linear-gradient(135deg,#eaf6e7,#ede7f6);}
+.pcard-img::after{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(-28deg,transparent,transparent 5px,rgba(123,94,167,.02) 5px,rgba(123,94,167,.02) 6px);}
+.pcard-emoji{font-size:5rem;filter:drop-shadow(0 6px 18px rgba(123,94,167,.2));z-index:1;}
+.sbadge{position:absolute;top:9px;right:9px;font-size:1.7rem;z-index:2;animation:sfw 2.8s ease-in-out infinite;filter:drop-shadow(0 2px 7px rgba(123,94,167,.4));}
+.pbadge{position:absolute;top:13px;left:13px;padding:.22rem .65rem;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;font-family:'DM Mono',monospace;z-index:3;}
+.pb-new{background:var(--p);color:var(--cream);} .pb-hot{background:var(--gd);color:var(--cream);} .pb-lim{background:var(--pd);color:var(--cream);}
+.pcard-body{padding:1.3rem 1.5rem 1.7rem;border-top:1.5px solid var(--gl);}
+.pcard-cat{font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gd);margin-bottom:.4rem;}
+.pcard-name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--pd);margin-bottom:.35rem;line-height:1.2;}
+.pcard-desc{font-size:.62rem;color:var(--p);opacity:.72;line-height:1.75;}
+.pcard-foot{display:flex;align-items:center;justify-content:space-between;margin-top:1.1rem;padding-top:.9rem;border-top:1px dashed var(--gl);}
+.pcard-price{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:900;color:var(--pd);}
+.pcard-price sup{font-family:'DM Mono',monospace;font-size:.55rem;font-weight:400;opacity:.6;}
+.btn-add{padding:.45rem 1.1rem;background:var(--g);color:var(--pd);border:1.5px solid var(--gd);font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .22s;}
+.btn-add:hover{background:var(--p);color:var(--cream);border-color:var(--p);transform:translateY(-2px);}
+/* ABOUT */
+.about-strip{background:linear-gradient(135deg,var(--pd) 0%,var(--p) 60%,var(--pd) 100%);padding:5rem 2rem;position:relative;overflow:hidden;}
+.about-strip::before{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(40deg,transparent,transparent 9px,rgba(255,255,255,.018) 9px,rgba(255,255,255,.018) 10px);}
+.about-inner{max-width:920px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:2;}
+.about-text h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:900;color:var(--gl);line-height:1.1;margin-bottom:1.4rem;}
+.about-text p{font-size:.7rem;color:var(--pl);line-height:2.1;letter-spacing:.03em;margin-bottom:.9rem;opacity:.9;}
+.sc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;}
+.sc-item{background:rgba(255,255,255,.065);border:1px solid rgba(255,255,255,.1);padding:1.1rem .8rem;text-align:center;transition:all .3s;}
+.sc-item:hover{background:rgba(168,213,162,.15);border-color:var(--g);transform:translateY(-4px);}
+.sc-item .se{font-size:2.1rem;display:block;margin-bottom:.45rem;}
+.sc-item .sl{font-size:.5rem;color:var(--pl);letter-spacing:.2em;text-transform:uppercase;}
+/* FEATURES */
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.8rem;margin-top:3rem;}
+.feat-card{padding:2.3rem 1.8rem;border:1.5px solid var(--gl);background:var(--white);position:relative;transition:all .3s;}
+.feat-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--p),var(--gd));transform:scaleX(0);transition:transform .3s;}
+.feat-card:hover::after{transform:scaleX(1);}
+.feat-card:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(123,94,167,.11);}
+.feat-icon{font-size:2rem;margin-bottom:.9rem;display:block;}
+.feat-title{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--pd);margin-bottom:.5rem;}
+.feat-desc{font-size:.62rem;color:var(--p);opacity:.68;line-height:1.85;}
+/* FOOTER */
+footer{background:var(--ink);padding:4rem 2.5rem 2rem;position:relative;overflow:hidden;}
+footer::before{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(-42deg,transparent,transparent 7px,rgba(255,255,255,.013) 7px,rgba(255,255,255,.013) 8px);}
+.foot-inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;position:relative;z-index:1;}
+.foot-brand h3{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:900;color:var(--gl);margin-bottom:.9rem;}
+.foot-brand p{font-size:.62rem;color:rgba(255,255,255,.38);line-height:2;letter-spacing:.04em;}
+.foot-col h4{font-size:.56rem;letter-spacing:.35em;text-transform:uppercase;color:var(--g);margin-bottom:1.1rem;}
+.foot-col ul{list-style:none;}
+.foot-col ul li{font-size:.62rem;color:rgba(255,255,255,.38);margin-bottom:.55rem;cursor:pointer;transition:color .2s;letter-spacing:.04em;}
+.foot-col ul li:hover{color:var(--pl);text-decoration:underline;}
+.foot-bottom{max-width:1180px;margin:2.5rem auto 0;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1;}
+.foot-bottom p{font-size:.56rem;color:rgba(255,255,255,.2);letter-spacing:.15em;}
+.foot-sn{font-size:1.4rem;display:flex;gap:.7rem;}
+.social-row{display:flex;gap:.7rem;margin-top:1.4rem;}
+.spill{padding:.35rem .9rem;border:1px solid rgba(255,255,255,.13);font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);cursor:pointer;transition:all .22s;}
+.spill:hover{border-color:var(--g);color:var(--g);}
+/* TOAST */
+.toast{position:fixed;bottom:2rem;right:2rem;background:var(--pd);color:var(--cream);padding:1rem 1.5rem;font-size:.62rem;letter-spacing:.1em;z-index:9997;opacity:0;transform:translateY(20px);transition:all .4s cubic-bezier(.34,1.56,.64,1);border-left:3px solid var(--gd);}
+.toast.show{opacity:1;transform:translateY(0);}
+/* INNER PAGES */
+.inner-hero{background:linear-gradient(135deg,var(--pd),var(--p));padding:5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden;}
+.inner-hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(-42deg,transparent,transparent 7px,rgba(255,255,255,.02) 7px,rgba(255,255,255,.02) 8px);}
+.inner-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,6vw,5rem);font-weight:900;color:var(--gl);position:relative;z-index:1;}
+.inner-hero p{font-size:.65rem;color:var(--pl);margin-top:.9rem;letter-spacing:.18em;text-transform:uppercase;position:relative;z-index:1;opacity:.8;}
+.back-btn{display:inline-flex;align-items:center;gap:.5rem;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--p);cursor:pointer;margin-bottom:2rem;border:none;background:none;font-family:'DM Mono',monospace;transition:color .2s;}
+.back-btn:hover{color:var(--pd);}
+.inner-wrap{max-width:880px;margin:0 auto;padding:4rem 2rem;}
+.hbox{background:var(--pp);border:1.5px dashed var(--pl);padding:1.4rem;margin:1.5rem 0;text-align:center;}
+.hbox p{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--pd);font-style:italic;}
+.pill{display:inline-block;padding:.35rem .9rem;background:var(--gp);border:1px solid var(--gd);font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gd);margin:.28rem .18rem;}
+/* custom order */
+.co-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:2.5rem;}
+.co-box{background:var(--white);border:1.5px solid var(--gl);padding:2.2rem;position:relative;}
+.co-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--p),var(--gd));}
+.co-box h3{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--pd);margin-bottom:1.1rem;}
+.co-box p{font-size:.65rem;color:var(--p);line-height:1.9;opacity:.85;margin-bottom:.75rem;}
+.co-step{display:flex;gap:.9rem;margin-bottom:1.1rem;align-items:flex-start;}
+.co-num{width:26px;height:26px;background:var(--p);color:var(--cream);display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;flex-shrink:0;}
+.co-txt{font-size:.65rem;color:var(--p);line-height:1.75;opacity:.88;}
+.btn-wa{display:inline-block;padding:.65rem 1.8rem;background:#25d366;color:#fff;font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .25s;border:none;margin-top:.8rem;width:100%;text-align:center;}
+.btn-wa:hover{background:#128c7e;transform:translateY(-2px);}
+/* nosotras */
+.nos-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:2.5rem;}
+.nos-text h2{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--pd);margin-bottom:1.4rem;line-height:1.15;}
+.nos-text p{font-size:.68rem;color:var(--p);line-height:2.1;margin-bottom:.9rem;opacity:.85;}
+.deco-card{background:linear-gradient(135deg,var(--pp),var(--gp));border:1.5px solid var(--pl);padding:1.8rem;text-align:center;margin-bottom:1.2rem;}
+.deco-card .de{font-size:2.8rem;display:block;margin-bottom:.7rem;}
+.deco-card h4{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--pd);margin-bottom:.45rem;}
+.deco-card p{font-size:.6rem;color:var(--p);opacity:.78;line-height:1.75;}
+/* how to */
+.how-steps{display:flex;flex-direction:column;gap:1.7rem;margin-top:2.5rem;}
+.how-step{display:grid;grid-template-columns:70px 1fr;gap:1.8rem;align-items:center;background:var(--white);border:1.5px solid var(--gl);padding:1.8rem;transition:all .3s;}
+.how-step:hover{transform:translateX(8px);border-color:var(--pl);}
+.hs-num{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;color:var(--pl);text-align:center;line-height:1;}
+.how-step h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--pd);margin-bottom:.4rem;}
+.how-step p{font-size:.64rem;color:var(--p);line-height:1.85;opacity:.85;}
+/* contacto */
+.c-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:2.5rem;}
+.c-card{background:var(--white);border:1.5px solid var(--gl);padding:2.2rem;text-align:center;position:relative;transition:all .3s;}
+.c-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gd),var(--p));}
+.c-card:hover{transform:translateY(-6px);box-shadow:0 14px 34px rgba(123,94,167,.13);}
+.c-icon{font-size:2.8rem;display:block;margin-bottom:.9rem;}
+.c-card h3{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--pd);margin-bottom:.7rem;}
+.c-card p{font-size:.64rem;color:var(--p);line-height:1.85;opacity:.82;}
+.phone{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:900;color:var(--pd);margin:1rem 0;display:block;}
+/* tiempos */
+.delivery-box{background:linear-gradient(135deg,var(--gp),var(--pp));border:2px solid var(--gl);padding:2.8rem;text-align:center;margin-top:2.5rem;}
+.delivery-box .de{font-size:3.5rem;display:block;margin-bottom:.8rem;}
+.delivery-box h2{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--pd);margin-bottom:.9rem;}
+.delivery-box p{font-size:.68rem;color:var(--p);line-height:2;max-width:580px;margin:0 auto;opacity:.85;}
+.d-cards{display:grid;grid-template-columns:1fr 1fr;gap:1.8rem;margin-top:2rem;}
+.d-card{padding:1.8rem;border:1.5px solid;text-align:center;}
+.d-card.d-active{border-color:var(--gd);background:var(--gp);}
+.d-card.d-soon{border-color:var(--pl);background:var(--pp);opacity:.6;}
+.d-card .di{font-size:2.3rem;display:block;margin-bottom:.7rem;}
+.d-card h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--pd);margin-bottom:.45rem;}
+.d-card p{font-size:.62rem;color:var(--p);line-height:1.8;opacity:.83;}
+.badge-av{display:inline-block;padding:.25rem .75rem;background:var(--gd);color:#fff;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;margin-top:.7rem;}
+.badge-so{display:inline-block;padding:.25rem .75rem;background:var(--pl);color:var(--pd);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;margin-top:.7rem;}
+.bq-notice{background:var(--ink);color:var(--cream);padding:1.8rem 2.2rem;margin-top:2rem;display:flex;align-items:center;gap:1.4rem;}
+.bq-notice .ni{font-size:2.2rem;flex-shrink:0;}
+.bq-notice h4{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--gl);margin-bottom:.35rem;}
+.bq-notice p{font-size:.62rem;color:rgba(255,255,255,.55);line-height:1.85;}
+/* generic btns */
+.gbtn{padding:.7rem 2rem;background:var(--p);color:var(--cream);border:2px solid var(--p);font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .25s;display:inline-block;}
+.gbtn:hover{background:var(--pd);border-color:var(--pd);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--gd);}
+.gbtn-o{background:transparent;color:var(--p);}
+.gbtn-o:hover{background:var(--gp);}
+/* animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+.hero-content>*{opacity:0;animation:fadeUp .8s ease forwards;}
+.hero-content>*:nth-child(1){animation-delay:.15s;}
+.hero-content>*:nth-child(2){animation-delay:.35s;}
+.hero-content>*:nth-child(3){animation-delay:.55s;}
+.hero-content>*:nth-child(4){animation-delay:.65s;}
+.hero-content>*:nth-child(5){animation-delay:.8s;}
+@media(max-width:768px){
+  .about-inner,.co-grid,.nos-grid,.c-grid,.d-cards{grid-template-columns:1fr;}
+  .foot-inner{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  .how-step{grid-template-columns:55px 1fr;}
+}
+</style>
+</head>
+<body>
+ 
+<div class="toast" id="toast">🛒 ¡Añadido a la canasta!</div>
+ 
+<nav>
+  <div class="nav-logo" onclick="go('home')">vibes.GEMS ✿</div>
+  <ul class="nav-links">
+    <li><a onclick="goFilter('all')">Catálogo</a></li>
+    <li><a onclick="go('nosotras')">Nosotras</a></li>
+    <li><a onclick="go('contacto')">Contacto</a></li>
+  </ul>
+  <button class="nav-btn" onclick="go('pedidos')">✦ Pedidos</button>
+</nav>
+ 
+<!-- ══════════ HOME ══════════ -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="blob blob-1"></div><div class="blob blob-2"></div>
+    <div class="blob blob-3"></div><div class="blob blob-4"></div>
+    <div class="sf sf-a">🌸</div>
+    <div class="sf sf-b">🎀</div>
+    <div class="sf sf-c">🌷</div>
+    <div class="sf sf-d">⭐</div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">✦ handmade with love · barranquilla ✦</p>
+      <h1 class="hero-title">vibes.GEMS</h1>
+      <p class="hero-script">flores · llaveros · figuras · arte</p>
+      <p class="hero-tag">cada pieza es única — hecha a mano con alma</p>
+      <div class="hero-cta">
+        <button class="btn-hp" onclick="document.getElementById('cat').scrollIntoView({behavior:'smooth'})">Ver catálogo</button>
+        <button class="btn-ho" onclick="go('nosotras')">Nuestra historia</button>
+      </div>
+    </div>
+    <div class="scroll-hint"><span>↓</span>scroll</div>
+  </div>
+ 
+  <div class="mq-wrap"><div class="mq">
+    <span class="mq-item">flores de limpiapipas</span><span class="mq-item">figuras de porcelana</span><span class="mq-item">llaveros únicos</span><span class="mq-item">hecho a mano</span><span class="mq-item">sanrio vibes</span><span class="mq-item">flores de limpiapipas</span><span class="mq-item">figuras de porcelana</span><span class="mq-item">llaveros únicos</span><span class="mq-item">hecho a mano</span><span class="mq-item">sanrio vibes</span>
+  </div></div>
+ 
+  <div id="cat"><div class="wrap">
+    <div class="sec-head">
+      <span class="sec-label">✿ colección completa</span>
+      <h2 class="sec-title"><em>Nuestro Catálogo</em></h2>
+      <p class="sec-sub">piezas únicas, hechas con corazón y mucho glitter ✨</p>
+    </div>
+    <div class="cat-tabs">
+      <button class="ctab on"  data-icon="🌸" data-f="all"         onclick="filter('all',this)">Todos</button>
+      <button class="ctab"     data-icon="🌷" data-f="flores"      onclick="filter('flores',this)">Flores</button>
+      <button class="ctab"     data-icon="🔑" data-f="llaveros"    onclick="filter('llaveros',this)">Llaveros</button>
+      <button class="ctab"     data-icon="🏺" data-f="porcelana"   onclick="filter('porcelana',this)">Porcelana</button>
+      <button class="ctab"     data-icon="✨" data-f="limpiapipas" onclick="filter('limpiapipas',this)">Limpiapipas</button>
+    </div>
+    <div class="pgrid">
+      <!-- FLORES -->
+      <div class="pcard show" data-c="flores"><div class="pbadge pb-new">Nuevo</div><div class="pcard-img"><img src="rapunceleramo.jpeg" alt="" width="100%"; height="350vh"><span class="sbadge">🎀</span></div><div class="pcard-body"><p class="pcard-cat">✿ flores</p><h3 class="pcard-name">Ramo de Rapuncel</h3><p class="pcard-desc">Ramo inspirado en el cerezo japonés. Tonos rosados y lavanda con detalles de perlas.</p><div class="pcard-foot"><div class="pcard-price"><sup>$</sup>38.000</div><button class="btn-add" onclick="addCart()">+ canasta</button></div></div></div>
+      <div class="pcard show" data-c="flores"><div class="pbadge pb-new"></div><div class="pcard-img"><img src="azul1flor.jpeg" alt="" width="100%"; height="280vh"><span class="sbadge">🎀</span></div><div class="pcard-body"><p class="pcard-cat">✿ flores</p><h3 class="pcard-name">Ramo de Lirio Sencillo</h3><p class="pcard-desc">Ramo inspirado en el cerezo japonés. Tonos rosados y lavanda con detalles de perlas.</p><div class="pcard-foot"><div class="pcard-price"><sup>$</sup>15.000</div><button class="btn-add" onclick="addCart()">+ canasta</button></div></div></div>
+      <div class="pcard show" data-c="flores"><div class="pbadge pb-hot">Popular</div><div class="pcard-img"><img src="ramo3lirios.jpeg" alt="" width="100%"; height="350vh"><span class="sbadge">🌟</span></div><div class="pcard-body"><p class="pcard-cat">✿ flores</p><h3 class="pcard-name">Lirios Amarillos</h3><p class="pcard-desc">Set de tulipanes en tonos menta y malva. Perfectos para regalar o decorar.</p><div class="pcard-foot"><div class="pcard-price"><sup>$</sup>35.000</div><button class="btn-add" onclick="addCart()">+ canasta</button></div></div></div>
+      <div class="pcard show" data-c="flores"><div class="pcard-img"><img src="Ramo de 6 girasoles 🌻.jpeg" alt="" width="100%"; height="350vh"></div><div class="pcard-body"><p class="pcard-cat">✿ flores</p><h3 class="pcard-name">Ramo 6 Girasoles</h3><p class="pcard-desc">Rosa eterna en burdeos y champagne. Lazo de satén y hoja de terciopelo verde.</p><div class="pcard-foot"><div class="pcard-price"><sup>$</sup>28.000</div><button class="btn-add" onclick="addCart()">+ canasta</button></div></div></div>
+      <!-- LLAVEROS -->
+      <div class="pcard show" data-c="llaveros"><div class="pbadge pb-lim">Limitado</div><div class="pcard-img"><img src="pezllavero.jpeg" alt="" width="100%"; height="350vh"><span class="sbadge">💜</span></div><div class="pcard-body"><p class="pcard-cat">✦ llaveros</p><h3 class="pcard-name">Llaveros</h3><p class="pcard-desc">Llavero luna con cristal de resina y glitter violeta. Cadena dorada y dije floral.</p><div class="pcard-foot"><div class="pcard-price"><sup>$</sup>22.000</div><button class="btn-add" onclick="addCart()">+ canasta</button></div></div></div>
+      <div class="pcard show" data-c="llaveros"><div class="pbadge pb-hot">Limitado</div><div class="pcard-img"><img src="llaveromaikra.jpeg" alt="" width="100%"; height="350vh"><span class="sbadge">🎀</span></div><div class="pcard-body"><p class="pcard-cat">✦ llaveros</p><h3 class="pcard-name">Llavero de personajes de minecraft</h3><p class="pcard-desc">Muñequita bruja con hojitas verdes de arcilla y detalles grunge. 100% hecho a mano.</p><div class="pcard-foot"><div class="pcard-price"><sup>$</sup>18.000</div><button class="btn-add" onclick="addCart()">+ canasta</button></div></div></div>
+      <div class="pcard show" data-c="llaveros"><div class="pbadge pb-hot">Popular</div><div class="pcard-img"><img src="llaverocute.jpeg" alt="" width="100%"; height="350vh"><span class="sbadge">🎀</span></div><div class="pcard-body"><p class="pcard-cat">✦ llaveros</p><h3 class="pcard-name">Llavero cute Tulipan</h3><p class="pcard-desc">Muñequita bruja con hojitas verdes de arcilla y detalles grunge. 100% hecho a mano.</p><div class="pcard-foot"><div class="pcard-price"><sup>$</sup>18.000</div><button class="btn-add" onclick="addCart()">+ canasta</button></div></div></div>
+      <div class="pcard show" data-c="llaveros"><div class="pbadge pb-hot"></div><div class="pcard-img"><img src="llaverosfloress.jpeg" alt="" width="100%"; height="350vh"><span class="sbadge">🎀</span></div><div class="pcard-body"><p class="pcard-cat">✦ llaveros</p><h3 class="pcard-name">Llavero de flores</h3><p class="pcard-desc">Muñequita bruja con hojitas verdes de arcilla y detalles grunge. 100% hecho a mano.</p><div class="pcard-foot"><div class="pcard-price"><sup>$</sup>18.000</div><button class="btn-add" onclick="addCart()">+ canasta</button></div></div></div>
+      
+      <!-- PORCELANA -->
+      <div class="pcard show" data-c="porcelana"><div class="pbadge pb-new">Nuevo</div><div class="pcard-img"><span class="pcard-emoji">🐰</span><span class="sbadge">⭐</span></div><div class="pcard-body"><p class="pcard-cat">🏺 porcelana</p><h3 class="pcard-name">Bunny Dreamer Figura</h3><p class="pcard-desc">Conejita soñadora en porcelana fría. Pintada a mano con detalles lavanda y verde pastel.</p><div class="pcard-foot"><div class="pcard-price"><sup>$</sup>55.000</div><button class="btn-add" onclick="addCart()">+ canasta</button></div></div></div>
+      <div class="pcard show" data-c="porcelana"><div class="pbadge pb-lim">Único</div><div class="pcard-img"><span class="pcard-emoji">🌙</span><span class="sbadge">🌷</span></div><div class="pcard-body"><p class="pcard-cat">🏺 porcelana</p><h3 class="pcard-name">Luna & Estrella Set</h3><p class="pcard-desc">Dúo luna-estrella en morado oscuro con glitter plateado. Edición limitada.</p><div class="pcard-foot"><div class="pcard-price"><sup>$</sup>72.000</div><button class="btn-add" onclick="addCart()">+ canasta</button></div></div></div>
+      <div class="pcard show" data-c="porcelana"><div class="pcard-img"><span class="pcard-emoji">🐱</span><span class="sbadge">🎀</span></div><div class="pcard-body"><p class="pcard-cat">🏺 porcelana</p><h3 class="pcard-name">Kitty Witch Doll</h3><p class="pcard-desc">Gatita brujita con sombrerito negro y capa verde. Inspirada en el aesthetic Sanrio.</p><div class="pcard-foot"><div class="pcard-price"><sup>$</sup>60.000</div><button class="btn-add" onclick="addCart()">+ canasta</button></div></div></div>
+      <!-- LIMPIAPIPAS -->
+      <div class="pcard show" data-c="limpiapipas"><div class="pbadge pb-hot">Favorito</div><div class="pcard-img"><span class="pcard-emoji">🌺</span><span class="sbadge">💫</span></div><div class="pcard-body"><p class="pcard-cat">✨ limpiapipas</p><h3 class="pcard-name">Daisy Pipeline Rose</h3><p class="pcard-desc">Margaritas de limpiapipas en tonos pastel. Ramo de 5 flores con tallo decorativo.</p><div class="pcard-foot"><div class="pcard-price"><sup>$</sup>32.000</div><button class="btn-add" onclick="addCart()">+ canasta</button></div></div></div>
+      <div class="pcard show" data-c="limpiapipas"><div class="pcard-img"><span class="pcard-emoji">🌻</span><span class="sbadge">🌟</span></div><div class="pcard-body"><p class="pcard-cat">✨ limpiapipas</p><h3 class="pcard-name">Sunflower Galaxy</h3><p class="pcard-desc">Girasol gigante multicolor con pétalos en degradé verde-violeta. Decoración WOW.</p><div class="pcard-foot"><div class="pcard-price"><sup>$</sup>40.000</div><button class="btn-add" onclick="addCart()">+ canasta</button></div></div></div>
+      <div class="pcard show" data-c="limpiapipas"><div class="pbadge pb-new">Nuevo</div><div class="pcard-img"><span class="pcard-emoji">🌸</span><span class="sbadge">🎀</span></div><div class="pcard-body"><p class="pcard-cat">✨ limpiapipas</p><h3 class="pcard-name">Sakura Pipe Bouquet</h3><p class="pcard-desc">Mini ramo tipo sakura con limpiapipas rosados y blancos. Incluye tarjeta personalizada.</p><div class="pcard-foot"><div class="pcard-price"><sup>$</sup>35.000</div><button class="btn-add" onclick="addCart()">+ canasta</button></div></div></div>
+    </div>
+  </div></div>
+ 
+  <div class="about-strip">
+    <div class="about-inner">
+      <div class="about-text">
+        <h2>Hecho con alma,<br>vendido con amor ✿</h2>
+        <p>vibes.GEMS nació de una pasión por transformar materiales simples en pequeñas obras de arte llenas de magia y personalidad.</p>
+        <p>Nos inspira el mundo Sanrio: colores pastel, personajes tiernos y esa energía mágica que hace que todo se sienta especial.</p>
+        <button class="gbtn gbtn-o" style="border-color:var(--gl);color:var(--gl);margin-top:1rem;" onclick="go('nosotras')">Nuestra historia ✦</button>
+      </div>
+      <div>
+        <p style="font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--pl);text-align:center;margin-bottom:1rem;">nuestra inspiración</p>
+        <div class="sc-grid">
+          <div class="sc-item"><img src="MY MELODY.jpeg" alt="" width="60px" height="60px"><span class="sl">My Melody</span></div>
+          <div class="sc-item"><img src="dos.jpeg" alt="" width="60px" height="60px"><span class="sl">Twin Stars</span></div>
+          <div class="sc-item"><img src="keroopi.jpeg" alt="" width="60px" height="60px"><span class="sl">Keroppi</span></div>
+          <div class="sc-item"><img src="Kurombadz (1).jpeg" alt="" width="50px" height="50px"><span class="sl">Kurombadz</span></div>
+          <div class="sc-item"><img src="cinn.jpeg" alt="" width="40px" height="40px"><span class="sl">Cinnamoroll</span></div>
+          <div class="sc-item"><img src="popurim.jpeg" alt="" width="40px" height="40px"><span class="sl">Pompompurin</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-label">✦ por qué elegirnos</span>
+      <h2 class="sec-title"><em>Cada Detalle Importa</em></h2>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card"><span class="feat-icon">🌿</span><h3 class="feat-title">100% Artesanal</h3><p class="feat-desc">Cada pieza es hecha a mano, una por una. No hay dos iguales.</p></div>
+      <div class="feat-card"><span class="feat-icon">🎁</span><h3 class="feat-title">Packaging Especial</h3><p class="feat-desc">Papel de seda, stickers y tarjeta personalizada en cada pedido.</p></div>
+      <div class="feat-card"><span class="feat-icon">✨</span><h3 class="feat-title">Personalizable</h3><p class="feat-desc">Colores y diseños únicos — escríbenos y lo hacemos realidad.</p></div>
+      <div class="feat-card"><span class="feat-icon">📍</span><h3 class="feat-title">Solo Barranquilla</h3><p class="feat-desc">Por ahora pedidos en Barranquilla. ¡Próximamente a todo el país!</p></div>
+    </div>
+  </div>
+ 
+  <footer>
+    <div class="foot-inner">
+      <div class="foot-brand">
+        <h3>vibes.GEMS ✿</h3>
+        <p>Arte hecho a mano con alma.<br>Flores · Figuras · Llaveros · Magia.<br>Barranquilla, Colombia 🌿</p>
+        <div class="social-row">
+          <div class="spill">Instagram</div>
+          <div class="spill">TikTok</div>
+          <div class="spill" onclick="wa('')">WhatsApp</div>
+        </div>
+      </div>
+      <div class="foot-col"><h4>Catálogo</h4><ul>
+        <li onclick="goFilter('flores')">Flores Artesanales</li>
+        <li onclick="goFilter('limpiapipas')">Limpiapipas</li>
+        <li onclick="goFilter('llaveros')">Llaveros</li>
+        <li onclick="goFilter('porcelana')">Figuras Porcelana</li>
+        <li onclick="go('pedidos')">Pedidos Personalizados</li>
+      </ul></div>
+      <div class="foot-col"><h4>Info</h4><ul>
+        <li onclick="go('nosotras')">Sobre Nosotras</li>
+        <li onclick="go('como-pedir')">Cómo Pedir</li>
+        <li onclick="go('tiempos')">Tiempos de Entrega</li>
+        <li onclick="go('contacto')">Contacto</li>
+      </ul></div>
+    </div>
+    <div class="foot-bottom"><p>© 2025 vibes.GEMS — todos los derechos reservados ✦</p><div class="foot-sn">🎀⭐🌸💜</div></div>
+  </footer>
+</div><!-- /home -->
+ 
+ 
+<!-- ══════════ PEDIDOS PERSONALIZADOS ══════════ -->
+<div class="page" id="page-pedidos">
+  <div class="inner-hero"><h1>Pedidos Personalizados ✦</h1><p>tu idea · nuestra magia · una pieza única</p></div>
+  <div class="inner-wrap">
+    <button class="back-btn" onclick="go('home')">← Volver al inicio</button>
+    <span class="sec-label">✿ hazlo tuyo</span>
+    <h2 class="sec-title" style="margin-bottom:.9rem;"><em>Tu Pedido, Tu Visión</em></h2>
+    <p class="sec-sub" style="text-align:left;margin-bottom:1.5rem;">¿Tienes una idea en mente? Mándanos tus referencias y nosotras lo hacemos realidad.</p>
+    <div class="hbox"><p>✿ Puedes mandar referencias de lo que quieres en tu pedido — fotos, inspiraciones, colores — y yo te lo haré realidad 💜</p></div>
+    <div class="co-grid">
+      <div class="co-box">
+        <h3>¿Cómo funciona? 🎀</h3>
+        <div class="co-step"><div class="co-num">1</div><div class="co-txt"><strong>Mándanos tus referencias</strong> — fotos de Pinterest, imágenes, paletas de colores, capturas de lo que te inspira. ¡Más detalle = mejor resultado!</div></div>
+        <div class="co-step"><div class="co-num">2</div><div class="co-txt"><strong>Cuéntanos los detalles</strong> — ¿es para regalo? ¿decoración? ¿qué tipo de pieza? ¿colores o tamaño específico?</div></div>
+        <div class="co-step"><div class="co-num">3</div><div class="co-txt"><strong>Cotizamos juntas</strong> — te enviamos el precio según el diseño y complejidad. Sin sorpresas ocultas.</div></div>
+        <div class="co-step"><div class="co-num">4</div><div class="co-txt"><strong>¡Lo hacemos realidad!</strong> — trabajamos tu pieza con todo el amor y te enviamos fotos del proceso.</div></div>
+        <div class="co-step"><div class="co-num">5</div><div class="co-txt"><strong>Recibe tu pieza única</strong> — empacada con cariño, lista para enamorarte.</div></div>
+      </div>
+      <div class="co-box">
+        <h3>¿Qué puedes pedir? ✨</h3>
+        <p>Prácticamente cualquier cosa que imaginemos juntas — no hay ideas demasiado locas:</p>
+        <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem;">
+          <span class="pill">🌸 Flores personalizadas</span>
+          <span class="pill">🎨 Colores específicos</span>
+          <span class="pill">🔑 Llaveros con tu diseño</span>
+          <span class="pill">🐱 Tu personaje favorito</span>
+          <span class="pill">💍 Sets de regalo</span>
+          <span class="pill">🌷 Bouquets únicos</span>
+          <span class="pill">✨ Tamaños especiales</span>
+          <span class="pill">🎁 Con dedicatoria</span>
+          <span class="pill">🎀 Inspiración Sanrio</span>
+          <span class="pill">🏺 Figuras de porcelana</span>
+        </div>
+        <div class="hbox" style="margin-top:1.2rem;"><p>💜 Mientras más especial, ¡más nos encanta!</p></div>
+        <button class="btn-wa" onclick="wa('Hola! Quiero hacer un pedido personalizado en vibes.GEMS 🌸')">Hacer mi pedido por WhatsApp ✦</button>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="foot-inner">
+      <div class="foot-brand"><h3>vibes.GEMS ✿</h3><p>Arte hecho a mano con alma.<br>Barranquilla, Colombia 🌿</p></div>
+      <div class="foot-col"><h4>Catálogo</h4><ul>
+        <li onclick="goFilter('flores')">Flores Artesanales</li>
+        <li onclick="goFilter('limpiapipas')">Limpiapipas</li>
+        <li onclick="goFilter('llaveros')">Llaveros</li>
+        <li onclick="goFilter('porcelana')">Figuras Porcelana</li>
+        <li onclick="go('pedidos')">Pedidos Personalizados</li>
+      </ul></div>
+      <div class="foot-col"><h4>Info</h4><ul>
+        <li onclick="go('nosotras')">Sobre Nosotras</li>
+        <li onclick="go('como-pedir')">Cómo Pedir</li>
+        <li onclick="go('tiempos')">Tiempos de Entrega</li>
+        <li onclick="go('contacto')">Contacto</li>
+      </ul></div>
+    </div>
+    <div class="foot-bottom"><p>© 2025 vibes.GEMS ✦</p><div class="foot-sn">🎀⭐🌸💜</div></div>
+  </footer>
+</div>
+ 
+ 
+<!-- ══════════ NOSOTRAS ══════════ -->
+<div class="page" id="page-nosotras">
+  <div class="inner-hero"><h1>Sobre Nosotras 🌸</h1><p>arte · pasión · alma handmade</p></div>
+  <div class="inner-wrap">
+    <button class="back-btn" onclick="go('home')">← Volver al inicio</button>
+    <div class="nos-grid">
+      <div class="nos-text">
+        <h2>Somos vibes.GEMS ✿</h2>
+        <p>Nacimos de una pasión muy simple: transformar cosas cotidianas en pequeñas obras de arte llenas de magia. Con limpiapipas, porcelana fría y mucho amor, creamos piezas que cuentan historias.</p>
+        <p>Cada flor, cada llavero, cada figura que sale de nuestras manos es única. No hay dos iguales — eso es lo que hace especial a vibes.GEMS. No somos producción en masa, somos corazón puro hecho forma.</p>
+        <p>Nos inspira el mundo Sanrio, la estética grunge pastel y los colores que hacen suspirar. Sobre todo, nos inspira la alegría que siente alguien al recibir algo hecho especialmente para ellos.</p>
+        <p>Somos de Barranquilla, Colombia, y desde acá mandamos vibes al mundo. 🌿</p>
+        <div style="margin-top:1.4rem;">
+          <span class="pill">🌸 Hecho a mano</span>
+          <span class="pill">💜 Con amor</span>
+          <span class="pill">✨ Cada pieza única</span>
+          <span class="pill">🌿 Barranquilla</span>
+          <span class="pill">🎀 Sanrio vibes</span>
+        </div>
+        <button class="gbtn" style="margin-top:1.6rem;" onclick="go('pedidos')">Haz tu pedido ✦</button>
+      </div>
+      <div>
+        <div class="deco-card"><span class="de">🌸</span><h4>Nuestra Misión</h4><p>Crear piezas artesanales únicas que traigan alegría — llenas de color, personalidad y mucho amor.</p></div>
+        <div class="deco-card"><span class="de">💜</span><h4>Nuestra Visión</h4><p>Ser el emprendimiento de arte handmade favorito de Colombia, conocido por su calidad y el cariño en cada detalle.</p></div>
+        <div class="deco-card"><span class="de">✨</span><h4>Nuestros Valores</h4><p>Autenticidad, creatividad, amor por el arte y conexión genuina con cada cliente.</p></div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="foot-inner">
+      <div class="foot-brand"><h3>vibes.GEMS ✿</h3><p>Arte hecho a mano con alma.<br>Barranquilla, Colombia 🌿</p></div>
+      <div class="foot-col"><h4>Catálogo</h4><ul>
+        <li onclick="goFilter('flores')">Flores Artesanales</li>
+        <li onclick="goFilter('limpiapipas')">Limpiapipas</li>
+        <li onclick="goFilter('llaveros')">Llaveros</li>
+        <li onclick="goFilter('porcelana')">Figuras Porcelana</li>
+        <li onclick="go('pedidos')">Pedidos Personalizados</li>
+      </ul></div>
+      <div class="foot-col"><h4>Info</h4><ul>
+        <li onclick="go('nosotras')">Sobre Nosotras</li>
+        <li onclick="go('como-pedir')">Cómo Pedir</li>
+        <li onclick="go('tiempos')">Tiempos de Entrega</li>
+        <li onclick="go('contacto')">Contacto</li>
+      </ul></div>
+    </div>
+    <div class="foot-bottom"><p>© 2025 vibes.GEMS ✦</p><div class="foot-sn">🎀⭐🌸💜</div></div>
+  </footer>
+</div>
+ 
+ 
+<!-- ══════════ CÓMO PEDIR ══════════ -->
+<div class="page" id="page-como-pedir">
+  <div class="inner-hero"><h1>Cómo Pedir ✦</h1><p>sencillo · rápido · con mucho amor</p></div>
+  <div class="inner-wrap">
+    <button class="back-btn" onclick="go('home')">← Volver al inicio</button>
+    <span class="sec-label">✿ tu proceso de compra</span>
+    <h2 class="sec-title" style="margin-bottom:.5rem;"><em>Pedir es Fácil</em></h2>
+    <p class="sec-sub" style="text-align:left;margin-bottom:.5rem;">Sigue estos pasos y en poco tiempo tendrás tu pieza vibes.GEMS ✨</p>
+    <div class="how-steps">
+      <div class="how-step"><div class="hs-num">01</div><div><h3>Elige tu pieza 🌸</h3><p>Navega nuestro catálogo y elige lo que te enamoró — flores, llaveros, figuras de porcelana o limpiapipas. ¿Quieres algo personalizado? ¡También podemos hacerlo!</p></div></div>
+      <div class="how-step"><div class="hs-num">02</div><div><h3>Contáctanos por WhatsApp 💬</h3><p>Escríbenos al <strong>+57 302 395 5345</strong> diciéndonos qué pieza quieres y tu ubicación en Barranquilla. Si es personalizado, mándanos también tus referencias e inspiraciones.</p></div></div>
+      <div class="how-step"><div class="hs-num">03</div><div><h3>Recibe tu cotización ✨</h3><p>Te confirmamos disponibilidad, precio final y tiempo de entrega. Para pedidos personalizados te enviamos la cotización según el diseño elegido.</p></div></div>
+      <div class="how-step"><div class="hs-num">04</div><div><h3>Confirma y paga 💚</h3><p>Realizas el pago por Nequi, Daviplata o transferencia bancaria. Para pedidos personalizados pedimos un anticipo del 50% al confirmar.</p></div></div>
+      <div class="how-step"><div class="hs-num">05</div><div><h3>¡Recibe tu pieza! 🎁</h3><p>Coordinamos la entrega en Barranquilla directamente contigo. Tu pieza llega empacada con amor: papel de seda, stickers y tarjeta personalizada.</p></div></div>
+    </div>
+    <div class="hbox" style="margin-top:2rem;"><p>¿Tienes dudas? Escríbenos sin pena — estamos aquí para ayudarte 💜</p></div>
+    <div style="text-align:center;margin-top:1.5rem;">
+      <button class="btn-wa" style="width:auto;display:inline-block;" onclick="wa('Hola! Quiero hacer un pedido en vibes.GEMS')">Hacer mi pedido por WhatsApp ✦</button>
+    </div>
+  </div>
+  <footer>
+    <div class="foot-inner">
+      <div class="foot-brand"><h3>vibes.GEMS ✿</h3><p>Arte hecho a mano con alma.<br>Barranquilla, Colombia 🌿</p></div>
+      <div class="foot-col"><h4>Catálogo</h4><ul>
+        <li onclick="goFilter('flores')">Flores Artesanales</li>
+        <li onclick="goFilter('limpiapipas')">Limpiapipas</li>
+        <li onclick="goFilter('llaveros')">Llaveros</li>
+        <li onclick="goFilter('porcelana')">Figuras Porcelana</li>
+        <li onclick="go('pedidos')">Pedidos Personalizados</li>
+      </ul></div>
+      <div class="foot-col"><h4>Info</h4><ul>
+        <li onclick="go('nosotras')">Sobre Nosotras</li>
+        <li onclick="go('como-pedir')">Cómo Pedir</li>
+        <li onclick="go('tiempos')">Tiempos de Entrega</li>
+        <li onclick="go('contacto')">Contacto</li>
+      </ul></div>
+    </div>
+    <div class="foot-bottom"><p>© 2025 vibes.GEMS ✦</p><div class="foot-sn">🎀⭐🌸💜</div></div>
+  </footer>
+</div>
+ 
+ 
+<!-- ══════════ TIEMPOS ══════════ -->
+<div class="page" id="page-tiempos">
+  <div class="inner-hero"><h1>Tiempos de Entrega 🚚</h1><p>cada pieza hecha con tiempo y amor</p></div>
+  <div class="inner-wrap">
+    <button class="back-btn" onclick="go('home')">← Volver al inicio</button>
+    <div class="delivery-box">
+      <span class="de">🌍</span>
+      <h2>Depende de dónde estés</h2>
+      <p>Los tiempos de entrega varían según tu ubicación y el tipo de pieza que elijas. Como todo es hecho a mano con dedicación, el tiempo de producción también influye. Siempre te informaremos el tiempo exacto al confirmar tu pedido.</p>
+    </div>
+    <div class="bq-notice">
+      <span class="ni">📍</span>
+      <div>
+        <h4>Por ahora: solo pedidos en Barranquilla</h4>
+        <p>Actualmente realizamos entregas únicamente dentro de Barranquilla, Colombia. Estamos trabajando para expandirnos pronto a otras ciudades del país. ¡Gracias por tu paciencia y apoyo!</p>
+      </div>
+    </div>
+    <div class="d-cards">
+      <div class="d-card d-active">
+        <span class="di">🏙️</span>
+        <h3>Barranquilla</h3>
+        <p>Entregamos directamente en toda la ciudad. Coordinamos el punto de entrega por WhatsApp según tu zona.</p>
+        <p style="margin-top:.7rem;font-weight:700;color:var(--gd);font-size:.65rem;">Tiempo estimado: 3 a 7 días hábiles</p>
+        <span class="badge-av">✓ Disponible ahora</span>
+      </div>
+      <div class="d-card d-soon">
+        <span class="di">🚀</span>
+        <h3>Otras ciudades</h3>
+        <p>Aún no realizamos envíos a otras ciudades. Estamos trabajando para expandirnos muy pronto a todo el país.</p>
+        <p style="margin-top:.7rem;font-size:.6rem;">Síguenos en redes para saber cuándo llegamos a tu ciudad 💜</p>
+        <span class="badge-so">Próximamente</span>
+      </div>
+    </div>
+    <div class="sec-head" style="margin-top:3.5rem;margin-bottom:2rem;">
+      <h2 class="sec-title"><em>Tiempos por Producto</em></h2>
+      <p class="sec-sub">producción + empaque incluidos</p>
+    </div>
+    <div class="feat-grid" style="margin-top:0;">
+      <div class="feat-card"><span class="feat-icon">🌸</span><h3 class="feat-title">Flores & Limpiapipas</h3><p class="feat-desc">En catálogo: 2 a 4 días. Personalizados: 4 a 7 días según complejidad.</p></div>
+      <div class="feat-card"><span class="feat-icon">🔑</span><h3 class="feat-title">Llaveros</h3><p class="feat-desc">En catálogo: 2 a 3 días. Personalizados: 3 a 6 días hábiles.</p></div>
+      <div class="feat-card"><span class="feat-icon">🏺</span><h3 class="feat-title">Figuras de Porcelana</h3><p class="feat-desc">Por su proceso artesanal: 5 a 8 días. Personalizadas: 7 a 12 días hábiles.</p></div>
+      <div class="feat-card"><span class="feat-icon">🎁</span><h3 class="feat-title">Pedidos Especiales</h3><p class="feat-desc">Sets de regalo o diseños elaborados: cotizamos el tiempo exacto al confirmar.</p></div>
+    </div>
+    <div class="hbox" style="margin-top:2rem;"><p>💜 Siempre te avisamos cuando tu pedido está listo y coordinamos la entrega juntas.</p></div>
+  </div>
+  <footer>
+    <div class="foot-inner">
+      <div class="foot-brand"><h3>vibes.GEMS ✿</h3><p>Arte hecho a mano con alma.<br>Barranquilla, Colombia 🌿</p></div>
+      <div class="foot-col"><h4>Catálogo</h4><ul>
+        <li onclick="goFilter('flores')">Flores Artesanales</li>
+        <li onclick="goFilter('limpiapipas')">Limpiapipas</li>
+        <li onclick="goFilter('llaveros')">Llaveros</li>
+        <li onclick="goFilter('porcelana')">Figuras Porcelana</li>
+        <li onclick="go('pedidos')">Pedidos Personalizados</li>
+      </ul></div>
+      <div class="foot-col"><h4>Info</h4><ul>
+        <li onclick="go('nosotras')">Sobre Nosotras</li>
+        <li onclick="go('como-pedir')">Cómo Pedir</li>
+        <li onclick="go('tiempos')">Tiempos de Entrega</li>
+        <li onclick="go('contacto')">Contacto</li>
+      </ul></div>
+    </div>
+    <div class="foot-bottom"><p>© 2025 vibes.GEMS ✦</p><div class="foot-sn">🎀⭐🌸💜</div></div>
+  </footer>
+</div>
+ 
+ 
+<!-- ══════════ CONTACTO ══════════ -->
+<div class="page" id="page-contacto">
+  <div class="inner-hero"><h1>Contáctanos 💜</h1><p>estamos aquí para ti · con amor desde Barranquilla</p></div>
+  <div class="inner-wrap">
+    <button class="back-btn" onclick="go('home')">← Volver al inicio</button>
+    <span class="sec-label">✿ hablemos</span>
+    <h2 class="sec-title" style="margin-bottom:.5rem;"><em>¿Cómo Contactarnos?</em></h2>
+    <p class="sec-sub" style="text-align:left;margin-bottom:.5rem;">La forma más rápida de hablar con nosotras es por WhatsApp. ¡Respondemos con mucho amor! 🌸</p>
+    <div class="c-grid">
+      <div class="c-card">
+        <span class="c-icon">📱</span>
+        <h3>WhatsApp</h3>
+        <p>La forma más rápida de contactarnos. Escríbenos para pedidos, consultas o simplemente para saludar.</p>
+        <span class="phone">+57 302 395 5345</span>
+        <p style="font-size:.58rem;opacity:.55;margin-bottom:.9rem;">Lunes a Sábado · 9am – 7pm</p>
+        <button class="btn-wa" onclick="wa('Hola! Quiero saber más sobre vibes.GEMS 🌸')">Abrir WhatsApp ✦</button>
+      </div>
+      <div class="c-card">
+        <span class="c-icon">📍</span>
+        <h3>Ubicación</h3>
+        <p>Somos de Barranquilla, Colombia, y por ahora solo hacemos entregas dentro de la ciudad.</p>
+        <span class="phone" style="font-size:1.2rem;">Barranquilla 🌿</span>
+        <p style="font-size:.58rem;opacity:.55;">Atlántico, Colombia</p>
+        <p style="font-size:.62rem;margin-top:.9rem;color:var(--gd);">Coordinamos el punto de entrega contigo por WhatsApp.</p>
+        <button class="gbtn" style="margin-top:1rem;width:100%;text-align:center;" onclick="go('tiempos')">Ver tiempos de entrega</button>
+      </div>
+    </div>
+    <div class="hbox" style="margin-top:2rem;"><p>🎀 ¡No dudes en escribirnos! Somos súper amigables y amamos hablar de arte y flores.</p></div>
+  </div>
+  <footer>
+    <div class="foot-inner">
+      <div class="foot-brand"><h3>vibes.GEMS ✿</h3><p>Arte hecho a mano con alma.<br>Barranquilla, Colombia 🌿</p></div>
+      <div class="foot-col"><h4>Catálogo</h4><ul>
+        <li onclick="goFilter('flores')">Flores Artesanales</li>
+        <li onclick="goFilter('limpiapipas')">Limpiapipas</li>
+        <li onclick="goFilter('llaveros')">Llaveros</li>
+        <li onclick="goFilter('porcelana')">Figuras Porcelana</li>
+        <li onclick="go('pedidos')">Pedidos Personalizados</li>
+      </ul></div>
+      <div class="foot-col"><h4>Info</h4><ul>
+        <li onclick="go('nosotras')">Sobre Nosotras</li>
+        <li onclick="go('como-pedir')">Cómo Pedir</li>
+        <li onclick="go('tiempos')">Tiempos de Entrega</li>
+        <li onclick="go('contacto')">Contacto</li>
+      </ul></div>
+    </div>
+    <div class="foot-bottom"><p>© 2026 vibes.GEMS ✦</p><div class="foot-sn">🎀⭐🌸💜</div></div>
+  </footer>
+</div>
+ 
+<script>
+function go(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const t = document.getElementById('page-' + id);
+  if (t) { t.classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
+}
+ 
+function goFilter(cat) {
+  go('home');
+  setTimeout(() => {
+    filter(cat, null);
+    const el = document.getElementById('cat');
+    if (el) el.scrollIntoView({behavior:'smooth'});
+  }, 90);
+}
+ 
+function filter(cat, btn) {
+  document.querySelectorAll('.ctab').forEach(t => {
+    t.classList.remove('on');
+    if (t.dataset.f === cat) t.classList.add('on');
+  });
+  document.querySelectorAll('.pcard').forEach(c => {
+    if (cat === 'all' || c.dataset.c === cat) c.classList.add('show');
+    else c.classList.remove('show');
+  });
+}
+ 
+function addCart() {
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+ 
+function wa(msg) {
+  const url = 'https://wa.me/573023955345' + (msg ? '?text=' + encodeURIComponent(msg) : '');
+  window.open(url, '_blank');
+}
+ 
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
+  });
+}, {threshold:.1});
+ 
+document.querySelectorAll('.pcard,.feat-card,.how-step,.deco-card,.c-card,.sc-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(22px)';
+  el.style.transition = 'opacity .6s ease, transform .6s ease, box-shadow .35s cubic-bezier(.34,1.56,.64,1), border-color .35s';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
